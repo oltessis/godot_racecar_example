@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b3l3xrpqctqrk"]
+
+[ext_resource type="PackedScene" uid="uid://dbii4bpe0h42i" path="res://fpga_racecar_model.glb" id="1_lkm8t"]
+
+[node name="fpga_racecar_model" unique_id=685304089 instance=ExtResource("1_lkm8t")]

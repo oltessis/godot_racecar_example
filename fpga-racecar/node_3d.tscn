@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://cmu1xdjkspot6"]
+
+[ext_resource type="PackedScene" uid="uid://dbii4bpe0h42i" path="res://fpga_racecar_model.glb" id="1_a202f"]
+[ext_resource type="Script" uid="uid://de4t6cx6vomnt" path="res://vehicle_body_3d.gd" id="1_noarx"]
+[ext_resource type="PackedScene" uid="uid://bv7sbhpasdfbn" path="res://car_track.glb" id="3_a0tk4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+size = Vector3(2.4957275, 0.9008789, 1.5595703)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_noarx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+albedo_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a202f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0tk4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_noarx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r3fl7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a202f"]
+sky_top_color = Color(0.8120747, 0.84735316, 0.89470273, 1)
+sky_horizon_color = Color(0.58063954, 0.6479768, 0.8478343, 1)
+sky_curve = 0.27990928
+sky_energy_multiplier = 1.2
+sky_cover_modulate = Color(0.8964432, 0.88812447, 0.8917475, 1)
+
+[sub_resource type="Sky" id="Sky_noarx"]
+sky_material = SubResource("ProceduralSkyMaterial_a202f")
+
+[sub_resource type="Environment" id="Environment_a0tk4"]
+background_mode = 2
+sky = SubResource("Sky_noarx")
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_r3fl7"]
+
+[sub_resource type="Compositor" id="Compositor_jka67"]
+
+[node name="Node3D" type="Node3D" unique_id=903878238]
+
+[node name="VehicleBridge" type="VehicleBridge" parent="." unique_id=899416326 node_paths=PackedStringArray("front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7031748)
+mass = 2.0
+script = ExtResource("1_noarx")
+front_left_wheel = NodePath("front_left_wheel")
+front_right_wheel = NodePath("front_right_wheel")
+rear_left_wheel = NodePath("rear_left_wheel")
+rear_right_wheel = NodePath("rear_right_wheel")
+
+[node name="fpga_racecar_model" parent="VehicleBridge" unique_id=685304089 instance=ExtResource("1_a202f")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.4017812, 0.9263357, -0.66781783)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBridge" unique_id=1523610156]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.1282959, 1.1193606, -0.66914344)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="Camera3D" type="Camera3D" parent="VehicleBridge" unique_id=1966659923]
+transform = Transform3D(-4.3574357e-08, 0.079120256, -0.9968651, 3.4584562e-09, 0.9968651, 0.079120256, 1, 0, -4.371139e-08, -7.637951, 3.7194657, -0.6762719)
+
+[node name="front_right_wheel" type="VehicleWheel3D" parent="VehicleBridge" unique_id=290793771]
+transform = Transform3D(-0.0016790869, -0.009988776, 0.9999487, -0.0114958715, 0.9998843, 0.009968833, -0.99993247, -0.011478599, -0.0017937229, 0, 0.4038334, 0.47588348)
+use_as_steering = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VehicleBridge/front_right_wheel" unique_id=1392645131]
+transform = Transform3D(2.7874485e-06, -0.39997298, -0.011667777, 0.9999655, 3.9891805e-05, -0.008309184, 0.008309769, -0.0046669436, 0.9998974, -0.12743998, -0.0014628172, -0.00022860616)
+mesh = SubResource("CylinderMesh_noarx")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0tk4")
+
+[node name="front_left_wheel" type="VehicleWheel3D" parent="VehicleBridge" unique_id=944284297]
+transform = Transform3D(-0.0016790869, -0.009988776, 0.9999487, -0.0114958715, 0.9998843, 0.009968833, -0.99993247, -0.011478599, -0.0017937229, 0, 0.52918196, -1.8546659)
+use_as_steering = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="VehicleBridge/front_left_wheel" unique_id=307812814]
+transform = Transform3D(2.794899e-06, -0.3999731, -0.011667777, 0.9999655, 3.989134e-05, -0.008309187, 0.008309766, -0.0046669445, 0.9998974, 0.055775404, -0.0938434, -0.00084377127)
+mesh = SubResource("CylinderMesh_noarx")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0tk4")
+
+[node name="rear_right_wheel" type="VehicleWheel3D" parent="VehicleBridge" unique_id=478411722]
+transform = Transform3D(-0.0016790869, -0.009988776, 0.9999487, -0.0114958715, 0.9998843, 0.009968833, -0.99993247, -0.011478599, -0.0017937229, -1.5179243, 0.55272293, 0.4994247)
+use_as_traction = true
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="VehicleBridge/rear_right_wheel" unique_id=725684544]
+transform = Transform3D(2.8023496e-06, -0.3999732, -0.011667777, 0.9999655, 3.9889477e-05, -0.008309191, 0.008309762, -0.0046669464, 0.9998974, -0.13960838, -0.17099908, 0.049586773)
+mesh = SubResource("CylinderMesh_noarx")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0tk4")
+
+[node name="rear_left_wheel" type="VehicleWheel3D" parent="VehicleBridge" unique_id=401085453]
+transform = Transform3D(-0.0016790869, -0.009988776, 0.9999487, -0.0114958715, 0.9998843, 0.009968833, -0.99993247, -0.011478599, -0.0017937229, -1.5179243, 0.545882, -1.8782061)
+use_as_traction = true
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="VehicleBridge/rear_left_wheel" unique_id=1056280174]
+transform = Transform3D(2.7986243e-06, -0.39997315, -0.011667777, 0.9999655, 3.989041e-05, -0.008309189, 0.008309764, -0.0046669454, 0.9998974, 0.03252375, -0.1321238, 0.082144976)
+mesh = SubResource("CylinderMesh_noarx")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0tk4")
+
+[node name="world_map" type="StaticBody3D" parent="." unique_id=1521598210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1282959, 0.7554698, -0.66914344)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="world_map" unique_id=1265250392]
+transform = Transform3D(150, 0, 0, 0, 0.5, 0, 0, 0, 150, 0.06414795, -1.107548, 0.33457172)
+mesh = SubResource("BoxMesh_a202f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world_map" unique_id=2028876257]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0.06414795, -1.3567679, 0.33457172)
+shape = SubResource("BoxShape3D_a0tk4")
+
+[node name="front_wall" type="MeshInstance3D" parent="world_map" unique_id=1102952345]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 150, 73.895134, 0.21374512, 0)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="back_wall" type="MeshInstance3D" parent="world_map" unique_id=405263058]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 150, -74.11063, 0.21374512, 0)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="right_wall" type="MeshInstance3D" parent="world_map" unique_id=1342644358]
+transform = Transform3D(-8.742278e-08, 0, 150, 0, 2, 0, -2, 0, -6.5567083e-06, 0.21604156, 0.21374512, 74)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="left_wall" type="MeshInstance3D" parent="world_map" unique_id=1642239378]
+transform = Transform3D(-8.742278e-08, 0, 150, 0, 2, 0, -2, 0, -6.5567083e-06, 0.21604156, 0.21374512, -74)
+mesh = SubResource("BoxMesh_noarx")
+
+[node name="ramp_body" type="MeshInstance3D" parent="world_map" unique_id=546405742]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 8, 0, 2, 30)
+mesh = SubResource("BoxMesh_a0tk4")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="world_map" unique_id=1712298136]
+transform = Transform3D(8.030047, -4.7677813, 0, 5.9597263, 6.424038, 0, 0, 0, 8, -11.678415, -1.6855359, 30)
+mesh = SubResource("BoxMesh_r3fl7")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="world_map" unique_id=708443127]
+transform = Transform3D(7.823909, 4.9823027, 0, -6.227878, 6.2591267, 0, 0, 0, 8, 11.476994, -1.8268776, 30)
+mesh = SubResource("BoxMesh_r3fl7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1676118197]
+environment = SubResource("Environment_a0tk4")
+camera_attributes = SubResource("CameraAttributesPhysical_r3fl7")
+compositor = SubResource("Compositor_jka67")
+
+[node name="car_track" parent="." unique_id=648082590 instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6083946, 9.881681, -27.876747)

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libracecar_core.a CMakeFiles/racecar_core.dir/src/core/ppm_encoder.cpp.o
+/usr/bin/ranlib libracecar_core.a
